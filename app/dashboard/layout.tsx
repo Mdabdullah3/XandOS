@@ -12,9 +12,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="cyber-noise" />
 
       {/* 2. NAVIGATION SIDEBAR */}
-     <div className="w-24">
-       <Sidebar />
-     </div>
+      <div className="md:w-24 w-0">
+        <Sidebar />
+      </div>
 
       {/* 3. MAIN CONTENT STAGE */}
       <main className="flex-1 h-full overflow-y-auto no-scrollbar relative z-10 px-8 py-10">

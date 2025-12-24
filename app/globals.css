@@ -1,6 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-syncopate: "Syncopate", sans-serif;
+}
 
 :root {
   --neon-cyan: #00f2ff;
@@ -12,10 +16,14 @@
 body {
   background: #020205;
   color: #fff;
-  font-family: "Orbitron", sans-serif;
+  /* font-family: "Orbitron", sans-serif; */
   overflow: hidden;
 }
-
+.text-diamond {
+  text-shadow: 0 0 20px rgba(0, 242, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.1);
+  letter-spacing: -0.05em;
+}
 /* --- THE NEURAL FLOW (Left to Right Moving Gradient) --- */
 .neural-flow {
   position: fixed;
