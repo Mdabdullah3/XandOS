@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
+@import "tailwindcss";
+
+
+:root {
+  --neon-cyan: #00f2ff;
+  --neon-pink: #ff00bd;
+  --neon-purple: #7c3aed;
+  --neon-lime: #b5ff00;
+}
+
+body {
+  background: #020205;
+  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  overflow: hidden;
+}
+
+/* --- THE NEURAL FLOW (Left to Right Moving Gradient) --- */
+.neural-flow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #020205;
+  overflow: hidden;
+}
+
+.neural-flow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+      circle at 30% 50%,
+      rgba(0, 242, 255, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 70% 50%,
+      rgba(255, 0, 189, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(124, 58, 237, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(181, 255, 0, 0.05) 0%,
+      transparent 25%
+    );
+  filter: blur(100px);
+  animation: flow-animation 25s infinite linear;
+}
+
+@keyframes flow-animation {
+  0% {
+    transform: rotate(0deg) translateX(-10%);
+  }
+  50% {
+    transform: rotate(180deg) translateX(10%);
+  }
+  100% {
+    transform: rotate(360deg) translateX(-10%);
+  }
+}
+
+/* --- LASER MESH OVERLAY --- */
+.laser-mesh {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 242, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* --- NOISE TEXTURE (For High-End Realism) --- */
+.cyber-noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* --- SCROLLBAR KILLER --- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --- PREMIUM HOLOGRAPHIC GLASS --- */
+.holo-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
