@@ -5,7 +5,7 @@ const Headline = ({ title, title2 = "", subtitle }: { title: string, title2?: st
         <div className="flex flex-col gap-2">
             <div className="flex items-start gap-5">
                 {/* Tactical Vertical Bar */}
-                <div className="w-1.5 h-20 bg-gradient-to-b from-cyan-400 via-white to-fuchsia-600 rounded-full shadow-[0_0_20px_#00f2ff]" />
+                <div className="w-2 h-16 bg-linear-to-b from-cyan-400 via-white to-fuchsia-600 rounded-full shadow-[0_0_20px_#00f2ff]" />
 
                 <div className="flex flex-col">
                     <h1 className="text-5xl md:text-6xl font-black italic tracking-[-0.07em] text-white uppercase leading-[0.8] text-diamond">

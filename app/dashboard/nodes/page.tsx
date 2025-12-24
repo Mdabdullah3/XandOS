@@ -59,12 +59,12 @@ export default function NodeRegistry() {
                     {/* DIAMOND SEARCH */}
                     <div className="relative group flex-1 lg:w-96">
                         <div className="absolute inset-0 bg-cyan-500/5 blur-2xl group-focus-within:bg-cyan-500/15 transition-all" />
-                        <div className="relative flex items-center bg-black/60 border border-white/10 rounded-[25px] p-1 focus-within:border-cyan-500/50 transition-all">
+                        <div className="relative flex items-center border border-white/10 rounded-[25px] focus-within:border-cyan-500/50 transition-all">
                             <div className="pl-5 pr-2 text-cyan-400/40"><Search size={20} /></div>
                             <input
                                 type="text" value={search} onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
                                 placeholder="ENTER_PROTOCOL_IDENTITY..."
-                                className="bg-transparent w-full h-14 text-xs font-black italic tracking-widest text-white focus:outline-none placeholder:text-white/10 uppercase"
+                                className="bg-transparent w-full h-16 text-xs font-black italic tracking-widest text-white focus:outline-none placeholder:text-white/10 uppercase"
                             />
                         </div>
                     </div>
@@ -197,7 +197,6 @@ function LedgerRow({ pod, index }: any) {
                             <ShieldCheck size={24} className={isOnline ? "text-cyan-400 drop-shadow-[0_0_8px_#00f2ff]" : "text-white/10"} />
                             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                         </div>
-                        {isOnline && <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full animate-ping" />}
                     </div>
                     <div className="flex flex-col">
                         <span className="text-[15px] font-black text-white italic group-hover:text-cyan-400 transition-colors uppercase tracking-tighter leading-none mb-1">Node {pod.pubkey?.slice(0, 4)}</span>
