@@ -4,8 +4,8 @@ XandOS is an **industrial-grade, high-fidelity analytics platform** designed for
 
 Built with a "Diamond Sovereign" design philosophy, XandOS provides node operators and network analysts with a 360-degree view of the storage ecosystem, ensuring network transparency and competitive performance tracking.
 
-**Live Platform:** [YOUR_VERCEL_LINK_HERE]
-**Video Briefing:** [YOUR_X_OR_YOUTUBE_LINK_HERE]
+**Live Platform:** [[Live Link](https://xand-os.vercel.app/)]
+**Video Briefing:** [[Video Link]()]
 
 ---
 
