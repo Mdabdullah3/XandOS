@@ -2,9 +2,8 @@
 "use client";
 import Sidebar from "@/app/components/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, MessageSquare, BookOpen, CheckCircle2, ShieldCheck, Globe, ShieldHalf } from "lucide-react";
+import { ExternalLink, MessageSquare, BookOpen, CheckCircle2, ShieldCheck, Globe, ShieldHalf, Activity } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Activity } from "react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
