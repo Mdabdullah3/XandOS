@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
-import { Globe, Zap, Shield, Target, Crosshair, Loader2, Activity, MapPin, Radio, Share2 } from "lucide-react";
+import {  Zap, Shield, Target, Loader2, Activity, MapPin, Radio, Share2 } from "lucide-react";
 import { useXandStore } from '@/app/store/useXandStore';
 import Headline from '@/app/components/Headline';
 
@@ -22,7 +22,7 @@ const REGION_COORDS: any = {
 const geoUrl = "https://raw.githubusercontent.com/lotusms/world-map-data/main/world.json";
 
 export default function GlobalRadar() {
-    const { pnodes, fetchPNodes, isLoading, stats } = useXandStore();
+    const { pnodes, fetchPNodes, isLoading } = useXandStore();
     const [hoveredRegion, setHoveredRegion] = useState<any>(null);
 
     useEffect(() => { fetchPNodes(); }, [fetchPNodes]);
@@ -54,7 +54,7 @@ export default function GlobalRadar() {
                 <Headline title="GLOBAL" title2="RADAR" subtitle="NEURAL GEOSPATIAL MONITOR // PNODES" />
 
                 <div className="flex gap-10 px-10 py-6 sovereign-glass rounded-[40px] border border-white/10 relative overflow-hidden group backdrop-blur-3xl">
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-r from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <HeaderMetric label="Sectors_Active" value={regionalData.length} icon={Target} color="text-cyan-400" />
                     <div className="w-px h-10 bg-white/10" />
                     <HeaderMetric label="Global_Uptime" value="99.9%" icon={Activity} color="text-emerald-400" />
@@ -150,8 +150,8 @@ export default function GlobalRadar() {
                                     <div className="space-y-6">
                                         <LensStat label="DETECTION_COUNT" value={hoveredRegion.count} sub="pNodes Mapped" />
                                         <LensStat label="NETWORK_WEIGHT" value={`${hoveredRegion.percentage}%`} sub="Global Share" />
-                                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                                        <button className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black uppercase text-[11px] rounded-2xl tracking-[0.2em] shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                        <div className="h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                                        <button className="w-full py-4 bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black uppercase text-[11px] rounded-2xl tracking-[0.2em] shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all">
                                             Initiate_Deep_Audit
                                         </button>
                                     </div>
@@ -163,7 +163,7 @@ export default function GlobalRadar() {
 
                 {/* SECTOR DENSITY SIDEBAR (Sovereign Style) */}
                 <div className="lg:col-span-3 flex flex-col gap-10">
-                    <div className="sovereign-glass rounded-[60px] p-10 flex-1 flex flex-col border border-white/10 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
+                    <div className="sovereign-glass rounded-[60px] p-10 flex-1 flex flex-col border border-white/10 bg-linear-to-br from-white/2 to-transparent shadow-2xl">
                         <h3 className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-12 flex items-center gap-3">
                             <MapPin size={14} className="text-pink-500" /> Sector_Registry
                         </h3>

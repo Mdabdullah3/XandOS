@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Terminal, Shield, Zap, Activity,
+    Shield, Zap,
     Cpu, Wifi, Lock, Eye, RefreshCw,
     ArrowUpRight, Clock, Radio, Share2
 } from "lucide-react";
@@ -67,7 +67,7 @@ export default function GossipStream() {
                 <Headline title="GOSSIP" title2="PROTOCOL" subtitle="REAL-TIME ENCRYPTED NETWORK PULSE" />
 
                 <div className="flex gap-10 px-10 py-6 sovereign-glass rounded-[40px] border border-white/10 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-r from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <HeaderMetric label="Gossip_Freq" value="1.2s" icon={Clock} color="text-fuchsia-500" />
                     <div className="w-px h-10 bg-white/10" />
                     <HeaderMetric label="Active_Peers" value={pnodes.length} icon={Wifi} color="text-cyan-400" />
@@ -79,11 +79,11 @@ export default function GossipStream() {
 
                 {/* THE MASTER TERMINAL (Glows Pink/Fuchsia) */}
                 <div className="lg:col-span-8 group relative">
-                    <div className="absolute -inset-1 bg-gradient-to-b from-fuchsia-500/20 to-transparent blur-3xl opacity-10 group-hover:opacity-20 transition-all duration-1000" />
+                    <div className="absolute -inset-1 bg-linear-to-b from-fuchsia-500/20 to-transparent blur-3xl opacity-10 group-hover:opacity-20 transition-all duration-1000" />
 
                     <div className="sovereign-glass rounded-[60px] h-[650px] flex flex-col overflow-hidden border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8)]">
                         {/* Terminal Chrome */}
-                        <div className="p-8 bg-white/[0.03] border-b border-white/5 flex justify-between items-center backdrop-blur-3xl">
+                        <div className="p-8 bg-white/3 border-b border-white/5 flex justify-between items-center backdrop-blur-3xl">
                             <div className="flex gap-3">
                                 <div className="w-3 h-3 rounded-full bg-rose-500/20 border border-rose-500/40" />
                                 <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/40" />
@@ -137,7 +137,7 @@ export default function GossipStream() {
 
                     {/* Module A: Neural Mesh Radar */}
                     <div className="sovereign-glass rounded-[60px] p-10 h-[300px] relative overflow-hidden flex flex-col justify-between border border-white/10 group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="absolute inset-0 bg-linear-to-br from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                         <h3 className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em] relative z-10">Mesh_Integrity_Index</h3>
 
                         <div className="flex-1 flex items-center justify-center relative z-10">
@@ -212,7 +212,7 @@ function TerminalStat({ label, value, icon: Icon, color }: any) {
     return (
         <div className="flex justify-between  items-center group/stat cursor-crosshair">
             <div className="flex items-center gap-4">
-                <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 group-hover/stat:border-white/30 transition-all">
+                <div className="p-3 rounded-2xl bg-white/3 border border-white/10 group-hover/stat:border-white/30 transition-all">
                     <Icon size={18} className={color} />
                 </div>
                 <span className="text-[11px] font-black text-white/40 uppercase tracking-widest">{label}</span>
