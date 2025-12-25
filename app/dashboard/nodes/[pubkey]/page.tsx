@@ -10,13 +10,10 @@ import {
 } from "lucide-react";
 import Headline from '@/app/components/Headline';
 import { useXandStore } from '@/app/store/useXandStore';
-import { useRouter } from 'next/navigation';
 interface PageProps {
     params: Promise<{ pubkey: string }>;
 }
 export default function NodeDetailPage({ params }: PageProps) {
-    const router = useRouter();
-
     // ✅ Unwrap the promise params
     const resolvedParams = use(params);
     const pubkey = resolvedParams.pubkey;
