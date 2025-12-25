@@ -2,7 +2,7 @@
 "use client";
 import Sidebar from "@/app/components/Sidebar";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, MessageSquare, BookOpen, CheckCircle2, ShieldCheck, Globe, ShieldHalf, Activity } from "lucide-react";
+import { ExternalLink, Twitch, BookOpen, CheckCircle2, ShieldCheck, Globe, ShieldHalf, Activity } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -34,7 +34,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <ShieldHalf size={14} className="text-cyan-400" />
-                  <span className="text-[10px] md:text-[11px] font-black italic text-white uppercase tracking-[0.2em] md:tracking-[0.4em]">XandOS<span className="hidden xs:inline text-cyan-400">_Apex</span></span>
+                  <span className="text-[10px] md:text-[11px] font-black italic text-white uppercase tracking-[0.2em] md:tracking-[0.4em]">XandOS<span className="hidden xs:inline text-cyan-400">_OS</span></span>
                 </div>
                 <div className="h-[1.5px] w-full bg-linear-to-r from-cyan-400 via-white to-transparent mt-1 opacity-50 shadow-[0_0_10px_#00f2ff]" />
               </div>
@@ -49,8 +49,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="relative z-10 flex items-center gap-4 md:gap-10">
               <nav className="flex items-center gap-3 md:gap-8">
                 {/* Individual links now handle their own hover groups */}
-                <HeaderLink icon={BookOpen} label="Docs" href="https://xandeum.network" />
-                <HeaderLink icon={MessageSquare} label="Discord" href="https://discord.gg/uqRSmmM5m" />
+                <HeaderLink icon={BookOpen} label="Docs" href="https://www.xandeum.network" />
+                <HeaderLink icon={Twitch} label="Discord" href="https://discord.com/invite/uqRSmmM5m" />
               </nav>
 
               <div className="hidden md:block w-px h-6 bg-white/10" />
@@ -132,7 +132,7 @@ function HeaderLink({ icon: Icon, label, href }: any) {
       className="flex items-center gap-2 text-white/40 hover:text-white transition-all group/link"
     >
       {/* ✅ FIXED: Changed 'group-hover' to 'group-hover/link' to isolate this button */}
-      <div className="p-1.5 md:p-2 rounded-lg bg-white/5 border border-white/10 group-hover/link:border-cyan-500/50 group-hover/link:bg-cyan-500/10 transition-all">
+      <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 group-hover/link:border-cyan-500/50 group-hover/link:bg-cyan-500/10 transition-all">
         <Icon size={14} className="group-hover/link:rotate-12 transition-transform" />
       </div>
       <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest hidden md:block">
