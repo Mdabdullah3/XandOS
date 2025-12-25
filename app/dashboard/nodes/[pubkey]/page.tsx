@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState, use } from 'react';
@@ -20,6 +19,7 @@ export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: s
     const [copied, setCopied] = useState(false);
 
     // --- 1. FUNCTIONAL LOGIC: FETCH ---
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getAuditData = async () => {
         const found = pnodes.find((n: any) => n.pubkey === pubkey);
         if (found) {
@@ -30,7 +30,7 @@ export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: s
         }
     };
 
-    useEffect(() => { getAuditData(); }, [pnodes, pubkey]);
+    useEffect(() => { getAuditData(); }, [getAuditData, pnodes, pubkey]);
 
     // --- 2. FUNCTIONAL LOGIC: DOWNLOAD LOGS ---
     const handleDownload = () => {
@@ -76,7 +76,7 @@ export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: s
             <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-10 border-b border-white/5 pb-10">
                 <div className="flex items-start gap-8">
 
-                    <Headline title={`Node ${node.pubkey.slice(0, 4)}`} title2="Audit" subtitle='' />
+                    <Headline title={`Node ${node.pubkey.slice(0, 4)}`} title2="Audit" subtitle=' ' />
                 </div>
 
                 <div className="flex items-center gap-6">

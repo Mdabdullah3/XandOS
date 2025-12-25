@@ -42,7 +42,7 @@ export default function LeaderboardPage() {
         return (
             <div className="h-[70vh] flex flex-col items-center justify-center gap-6">
                 <div className="w-20 h-20 border-t-2 border-yellow-400 rounded-full animate-spin shadow-[0_0_30px_#facc15]" />
-                <p className="text-yellow-400 font-[900] italic uppercase tracking-[0.5em] text-[10px] animate-pulse">Ranking_Championship_Data</p>
+                <p className="text-yellow-400 font-black italic uppercase tracking-[0.5em] text-[10px] animate-pulse">Ranking_Championship_Data</p>
             </div>
         );
     }
@@ -57,10 +57,10 @@ export default function LeaderboardPage() {
                 </div>
 
                 <div className="flex gap-6 md:gap-10 px-6 md:px-10 py-4 md:py-6 sovereign-glass rounded-[30px] md:rounded-[40px] border border-white/10 relative overflow-hidden group w-full xl:w-auto">
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-r from-yellow-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col gap-0.5">
                         <span className="text-[8px] md:text-[9px] font-black text-white/30 uppercase tracking-[0.4em]">Epoch_Reset</span>
-                        <span className="text-lg md:text-2xl font-[900] italic text-white font-mono tracking-tighter tabular-nums">04D : 12H : 44M</span>
+                        <span className="text-lg md:text-2xl font-black italic text-white font-mono tracking-tighter tabular-nums">04D : 12H : 44M</span>
                     </div>
                     <div className="w-px h-10 bg-white/10" />
                     <div className="p-2 md:p-3 rounded-2xl bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 shadow-[0_0_20px_#facc15]">
@@ -85,9 +85,9 @@ export default function LeaderboardPage() {
 
             {/* --- 3. HALL OF FAME REGISTRY (Responsive Table) --- */}
             <div className="sovereign-glass rounded-[40px] md:rounded-[60px] border-white/10 overflow-hidden relative shadow-[0_40px_100px_rgba(0,0,0,0.8)]">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent opacity-50" />
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-yellow-400/40 to-transparent opacity-50" />
 
-                <div className="p-6 md:p-10 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+                <div className="p-6 md:p-10 border-b border-white/5 bg-white/2 flex justify-between items-center">
                     <div className="flex items-center gap-3">
                         <Fingerprint size={18} className="text-cyan-400" />
                         <h3 className="text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.5em]">Champions_Registry</h3>
@@ -135,7 +135,7 @@ function ChampionPodium({ node, height, order, delay, isWinner }: any) {
             transition={{ duration: 0.8, delay, ease: "circOut" }}
             className={`w-full md:w-1/3 ${height} ${order} sovereign-glass rounded-[40px] md:rounded-[60px] p-6 md:p-10 relative flex flex-col justify-between items-center group overflow-hidden border-white/10 ${node.glow}`}
         >
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/2 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
             <div className="relative z-10 flex flex-col items-center gap-4 md:gap-6">
                 <div className={`w-16 h-16 md:w-20 md:h-20 rounded-[22px] md:rounded-[30px] flex items-center justify-center border-2 shadow-2xl transition-all duration-700 group-hover:scale-110 ${isWinner ? 'bg-yellow-400 border-white/40 shadow-[0_0_40px_#facc15]' : 'bg-black/60 border-white/10'}`}>
@@ -147,11 +147,11 @@ function ChampionPodium({ node, height, order, delay, isWinner }: any) {
                 </div>
             </div>
 
-            <div className="relative w-full py-6 md:py-8 border-y border-white/5 bg-white/[0.01] rounded-[24px] md:rounded-3xl flex flex-col items-center gap-1 my-4 md:my-0">
+            <div className="relative w-full py-6 md:py-8 border-y border-white/5 bg-white/1 rounded-[24px] md:rounded-3xl flex flex-col items-center gap-1 my-4 md:my-0">
                 <span className="text-[8px] md:text-[9px] font-black text-white/20 uppercase tracking-widest leading-none">Score_Magnitude</span>
                 <div className="flex items-center gap-2 md:gap-3">
                     <Star size={14} className={node.color} fill="currentColor" />
-                    <span className="text-3xl md:text-5xl font-[900] italic text-white tracking-tighter tabular-nums">{node.score.toLocaleString()}</span>
+                    <span className="text-3xl md:text-5xl font-black italic text-white tracking-tighter tabular-nums">{node.score.toLocaleString()}</span>
                 </div>
             </div>
 
@@ -174,10 +174,10 @@ function HallRow({ node, rank }: any) {
     return (
         <motion.tr
             initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }}
-            className="group hover:bg-cyan-500/[0.03] transition-all duration-500 cursor-pointer"
+            className="group hover:bg-cyan-500/3 transition-all duration-500 cursor-pointer"
         >
             <td className="px-8 md:px-12 py-6 md:py-10">
-                <span className="font-mono text-cyan-400 font-[900] text-xs md:text-sm">#0{rank}</span>
+                <span className="font-mono text-cyan-400 font-black text-xs md:text-sm">#0{rank}</span>
             </td>
             <td className="px-8 md:px-12 py-6 md:py-10">
                 <div className="flex flex-col gap-1">
@@ -188,11 +188,11 @@ function HallRow({ node, rank }: any) {
             <td className="px-8 md:px-12 py-6 md:py-10 text-center">
                 <div className="inline-flex items-center gap-3">
                     <Star size={14} className="text-yellow-500" fill="currentColor" />
-                    <span className="text-lg md:text-2xl font-[900] italic text-white tabular-nums tracking-tighter">{node.credits?.toLocaleString() || 0}</span>
+                    <span className="text-lg md:text-2xl font-black italic text-white tabular-nums tracking-tighter">{node.credits?.toLocaleString() || 0}</span>
                 </div>
             </td>
             <td className="px-8 md:px-12 py-6 md:py-10">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/[0.03] w-fit">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/10 bg-emerald-500/3 w-fit">
                     <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
                     <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">{node.status}</span>
                 </div>
@@ -210,7 +210,7 @@ function PodiumMetric({ label, value, color }: any) {
     return (
         <div className="flex justify-between items-center px-1">
             <span className="text-[8px] font-black text-white/20 uppercase tracking-widest">{label}</span>
-            <span className={`text-[10px] md:text-xs font-[900] italic ${color} tracking-tighter`}>{value}</span>
+            <span className={`text-[10px] md:text-xs font-black italic ${color} tracking-tighter`}>{value}</span>
         </div>
     );
 }
@@ -230,7 +230,7 @@ function LeaderboardInsight({ label, value, sub, icon: Icon, color }: any) {
             <div className="space-y-1">
                 <span className="text-[8px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.4em]">{label}</span>
                 <div className="flex items-baseline gap-2">
-                    <span className="text-3xl md:text-5xl font-[900] italic text-white tracking-tighter leading-none">{value}</span>
+                    <span className="text-3xl md:text-5xl font-black italic text-white tracking-tighter leading-none">{value}</span>
                     <span className={`text-[9px] md:text-[11px] font-black uppercase tracking-widest italic ${themes[color].split(' ')[0]}`}>{sub}</span>
                 </div>
             </div>
