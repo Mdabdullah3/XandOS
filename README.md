@@ -98,19 +98,13 @@ To meet the Xandeum Bounty requirements, XandOS implements several custom engine
    npm install
 ```
 
-3. **Initialize Environment:**
-
-```bash
-   npm install
-```
-
-4. **Commence Development:**
+3. **Commence Development:**
 
 ```bash
    npm run dev
 ```
 
-5. **Vercel Deployment:**
+4. **Vercel Deployment:**
    The project is optimized for Vercel. Ensure `legacy-peer-deps=true` is set in your .npmrc to handle React 19 compatibility.
 
 Built with passion for the Xandeum Ecosystem by MdAbdullah.
