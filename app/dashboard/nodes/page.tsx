@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Search, ShieldCheck, Globe, Filter,
-    ArrowUpRight, Copy, AlertTriangle, Loader2,
-    Database, Activity, Zap, Clock, MapPin, X, ChevronDown, RotateCcw, Fingerprint
+    Search, ShieldCheck, Filter,
+    ArrowUpRight, Loader2,
+    MapPin, X, ChevronDown, RotateCcw
 } from "lucide-react";
 import { useXandStore } from '@/app/store/useXandStore';
 import Headline from '@/app/components/Headline';
@@ -47,20 +47,19 @@ export default function NodeRegistry() {
     const totalPages = Math.ceil(filteredNodes.length / nodesPerPage);
 
     return (
-        <div className="flex flex-col gap-8 md:gap-12 pb-40  max-w-7xl mx-auto overflow-visible">
+        <div className="flex flex-col gap-8 md:gap-12 pb-40 max-w-7xl mx-auto overflow-visible">
 
-            {/* --- 1. SOVEREIGN HEADER (Responsive Layout) --- */}
+            {/* --- 1. SOVEREIGN HEADER --- */}
             <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-6 md:pt-10 border-b border-white/5 pb-10">
                 <div className="scale-90 sm:scale-100 origin-left">
                     <Headline title="Network" title2="Registry" subtitle="Verified Node Ecosystem Ledger" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
-                    {/* DIAMOND SEARCH */}
                     <div className="relative group w-full sm:w-80 lg:w-96">
-                        <div className="absolute inset-0 bg-cyan-500/5 blur-2xl group-focus-within:bg-cyan-500/15 transition-all" />
-                        <div className="relative flex items-center bg-black/40 border border-white/10 rounded-[20px] md:rounded-[25px] p-1 focus-within:border-cyan-500/50 transition-all">
-                            <div className="pl-4 md:pl-5 pr-2 text-cyan-400/40"><Search size={18} /></div>
+                        <div className="absolute inset-0 bg-cyan-500/5 blur-2xl group-focus-within:bg-cyan-500/15 transition-all duration-700" />
+                        <div className="relative flex items-center bg-black/60 border border-white/10 rounded-[20px] md:rounded-[25px] p-1.5 focus-within:border-cyan-500/50 transition-all">
+                            <div className="pl-4 md:pl-5 pr-2 text-cyan-400/40"><Search size={22} /></div>
                             <input
                                 type="text" value={search} onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
                                 placeholder="ENTER_IDENTITY..."
@@ -71,21 +70,21 @@ export default function NodeRegistry() {
 
                     <button
                         onClick={() => setIsFilterOpen(true)}
-                        className="w-full sm:w-auto h-14 md:h-16 px-6 md:px-8 rounded-[20px] md:rounded-[25px] sovereign-glass border border-white/10 flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden"
+                        className="h-14 md:h-16 px-6 md:px-8 rounded-[20px] md:rounded-[25px] sovereign-glass border border-white/10 flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden"
                     >
-                        <Filter size={16} className="text-cyan-400" />
+                        <Filter size={18} className="text-cyan-400" />
                         <span>Advanced_Filters</span>
                     </button>
                 </div>
             </header>
 
-            {/* --- 2. THE REFRACTIVE LEDGER TABLE (Responsive Scroll) --- */}
+            {/* --- 2. THE REFRACTIVE LEDGER TABLE --- */}
             <div className="sovereign-glass rounded-[30px] md:rounded-[60px] border-white/10 overflow-hidden relative shadow-[0_30px_100px_rgba(0,0,0,0.8)]">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
 
-                <div className="overflow-x-auto custom-scrollbar">
-                    <table className="w-full text-left border-collapse min-w-[1100px] lg:min-w-full">
-                        <thead className="bg-white/[0.03] text-[9px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.4em] border-b border-white/10">
+                <div className="overflow-x-auto no-scrollbar">
+                    <table className="w-full text-left border-collapse min-w-200 lg:min-w-full">
+                        <thead className="bg-white/3 text-[9px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.4em] border-b border-white/10">
                             <tr>
                                 <th className="px-6 md:px-10 py-6 md:py-10">Neural_Identity</th>
                                 <th className="px-6 md:px-10 py-6 md:py-10">Address</th>
@@ -93,7 +92,7 @@ export default function NodeRegistry() {
                                 <th className="px-6 md:px-10 py-6 md:py-10 text-center">Integrity</th>
                                 <th className="px-6 md:px-10 py-6 md:py-10">Memory_Allocation</th>
                                 <th className="px-6 md:px-10 py-6 md:py-10">Status</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10 text-right">Actions</th>
+                                {/* <th className="px-6 md:px-10 py-6 md:py-10 text-right">Actions</th> */}
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5">
@@ -102,7 +101,8 @@ export default function NodeRegistry() {
                             ) : currentNodes.length === 0 ? (
                                 <tr><td colSpan={7} className="py-40 text-center text-white/10 uppercase tracking-[1em] italic text-xs">No_Segments_Found</td></tr>
                             ) : (
-                                currentNodes.map((pod, i) => (
+                                /* ✅ FIXED: Added explicit types to map parameters */
+                                currentNodes.map((pod: any, i: number) => (
                                     <LedgerRow key={pod.pubkey} pod={pod} index={(currentPage - 1) * nodesPerPage + i} />
                                 ))
                             )}
@@ -110,7 +110,7 @@ export default function NodeRegistry() {
                     </table>
                 </div>
 
-                {/* TABLE FOOTER (Responsive) */}
+                {/* TABLE FOOTER */}
                 <div className="p-6 md:p-10 border-t border-white/5 bg-black/40 flex flex-col sm:flex-row gap-6 justify-between items-center backdrop-blur-3xl">
                     <span className="text-[9px] md:text-[11px] font-black text-white/30 uppercase tracking-[0.4em]">
                         Segments_Sync: <span className="text-cyan-400">{filteredNodes.length} Matches</span>
@@ -123,7 +123,7 @@ export default function NodeRegistry() {
                 </div>
             </div>
 
-            {/* --- 3. FILTER MODAL (Responsive) --- */}
+            {/* --- 3. FILTER MODAL --- */}
             <AnimatePresence>
                 {isFilterOpen && (
                     <div className="fixed inset-0 z-[600] flex items-center justify-center p-4">
@@ -140,7 +140,7 @@ export default function NodeRegistry() {
                             <div className="space-y-8 md:space-y-12">
                                 <FilterSection label="Status_Sector">
                                     <div className="flex flex-wrap gap-2 md:gap-4">
-                                        {["ALL", "ONLINE", "SYNCING", "OFFLINE"].map(s => (
+                                        {["ALL", "ONLINE", "SYNCING", "OFFLINE"].map((s: string) => (
                                             <button key={s} onClick={() => setActiveStatus(s)} className={`px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black tracking-widest transition-all border ${activeStatus === s ? 'bg-cyan-500 text-black border-cyan-500 shadow-[0_0_30px_rgba(0,242,255,0.4)]' : 'bg-white/5 text-white/30 border-white/5 hover:border-white/20'}`}>{s}</button>
                                         ))}
                                     </div>
@@ -149,7 +149,9 @@ export default function NodeRegistry() {
                                 <FilterSection label="Geographic_Distribution">
                                     <div className="relative group">
                                         <select value={activeRegion} onChange={(e) => setActiveRegion(e.target.value)} className="w-full h-14 md:h-16 bg-black/60 border border-white/10 rounded-[15px] md:rounded-[25px] px-6 md:px-8 text-[10px] md:text-xs font-black italic text-white outline-none focus:border-pink-500 appearance-none transition-all cursor-pointer">
-                                            {regions.map(r => <option key={r} value={r} className="bg-[#080C14]">{r}</option>)}
+                                            {regions.map((r: any) => (
+                                                <option key={r} value={r} className="bg-[#080C14]">{r}</option>
+                                            ))}
                                         </select>
                                         <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-white/20 group-hover:text-pink-500 transition-colors" size={20} />
                                     </div>
@@ -157,7 +159,7 @@ export default function NodeRegistry() {
 
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                     <button onClick={() => { setActiveStatus("ALL"); setActiveRegion("All Regions"); }} className="w-full sm:flex-1 h-14 md:h-16 rounded-[15px] md:rounded-[25px] border border-white/5 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/20 hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-2"><RotateCcw size={16} /> Reset</button>
-                                    <button onClick={() => setIsFilterOpen(false)} className="w-full sm:flex-[2] h-14 md:h-16 rounded-[15px] md:rounded-[25px] bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] shadow-[0_20px_40px_rgba(0,242,255,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all">Commit_Protocol_Filters</button>
+                                    <button onClick={() => setIsFilterOpen(false)} className="w-full sm:flex-2 h-14 md:h-16 rounded-[15px] md:rounded-[25px] bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] shadow-[0_20px_40px_rgba(0,242,255,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all">Commit_Filters</button>
                                 </div>
                             </div>
                         </motion.div>
@@ -165,13 +167,12 @@ export default function NodeRegistry() {
                 )}
             </AnimatePresence>
 
-            {/* --- 4. DATA SCIENCE STRIP (Responsive Grid) --- */}
+            {/* --- 4. DATA SCIENCE STRIP --- */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 <InsightMini label="Network_Occupancy" value={`${((filteredNodes.length / (pnodes.length || 1)) * 100).toFixed(1)}%`} color="emerald" />
                 <InsightMini label="Sync_Integrity" value="Master_Stable" color="cyan" />
                 <InsightMini label="Latency_Average" value="12.4ms" color="fuchsia" />
             </div>
-
         </div>
     );
 }
@@ -186,36 +187,35 @@ function LedgerRow({ pod, index }: any) {
         <motion.tr
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: (index % 8) * 0.04 }}
-            className="group hover:bg-cyan-500/[0.04] transition-all duration-500 cursor-pointer relative"
+            className="group hover:bg-cyan-500/4 transition-all duration-500 cursor-pointer relative"
         >
             <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className="flex items-center gap-4 md:gap-6">
-                    <div className="relative">
-                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center relative z-10 group-hover:border-cyan-500 transition-all overflow-hidden shadow-2xl">
-                            <ShieldCheck size={20} className={isOnline ? "text-cyan-400 drop-shadow-[0_0_8px_#00f2ff]" : "text-white/10"} />
-                        </div>
+                <div className="flex items-center gap-4 md:gap-8">
+                    <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl md:rounded-[22px] bg-linear-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center relative z-10 group-hover:border-cyan-500 transition-all overflow-hidden shadow-2xl">
+                        <ShieldCheck size={20} className={isOnline ? "text-cyan-400 drop-shadow-[0_0_8px_#00f2ff]" : "text-white/10"} />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs md:text-[15px] font-black text-white italic group-hover:text-cyan-400 transition-colors uppercase tracking-tighter leading-none mb-1">Node {pod.pubkey?.slice(0, 4)}</span>
+                        <span className="text-xs md:text-[17px] font-black text-white italic group-hover:text-cyan-400 transition-colors uppercase tracking-tighter leading-none mb-1">Node {pod.pubkey?.slice(0, 4)}</span>
                         <span className="text-[8px] md:text-[10px] font-mono text-white/20 uppercase tracking-widest">{pod.pubkey?.slice(0, 8)}...</span>
                     </div>
                 </div>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10 text-[9px] md:text-[11px] font-mono text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-tighter">
+            <td className="px-6 md:px-12 py-6 md:py-10 text-[9px] md:text-[12px] font-mono text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-tighter">
                 {pod.address || "Encrypted"}
             </td>
 
             <td className="px-6 md:px-12 py-6 md:py-10">
                 <div className="flex items-center gap-2">
                     <MapPin size={14} className="text-pink-500" />
-                    <span className="text-[9px] md:text-[11px] font-black italic text-white/60 uppercase tracking-widest">{pod.region || "G_NODE"}</span>
+                    <span className="text-[9px] md:text-[12px] font-black italic text-white/60 uppercase tracking-widest">{pod.region || "G_NODE"}</span>
                 </div>
             </td>
 
             <td className="px-6 md:px-12 py-6 md:py-10 text-center">
                 <div className="flex flex-col items-center gap-2">
-                    <div className="w-16 md:w-24 h-1 bg-white/5 rounded-full overflow-hidden relative shadow-inner">
+                    <div className="w-16 md:w-28 h-1.5 bg-white/5 rounded-full overflow-hidden relative shadow-inner">
                         <motion.div initial={{ width: 0 }} animate={{ width: isOnline ? "100%" : "20%" }} className={`h-full ${isOnline ? 'bg-cyan-500' : 'bg-red-500'}`} />
                     </div>
                     <span className="text-[8px] font-black text-white/20 uppercase tracking-[0.2em]">{isOnline ? 'Auth' : 'Off'}</span>
@@ -223,12 +223,12 @@ function LedgerRow({ pod, index }: any) {
             </td>
 
             <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className="flex flex-col gap-2 md:gap-3 w-40 md:w-56">
-                    <div className="flex justify-between items-center text-[8px] md:text-[10px] font-black italic uppercase tracking-widest">
+                <div className="flex flex-col gap-2 md:gap-3 w-40 md:w-64">
+                    <div className="flex justify-between items-center text-[8px] md:text-[11px] font-black italic uppercase tracking-widest">
                         <span className="text-white/60">{formatBytes(pod.storageUsed)}</span>
                         <span className="text-cyan-400">{formatBytes(pod.storageCapacity)}</span>
                     </div>
-                    <div className="w-full h-2 md:h-2.5 bg-black/60 rounded-full overflow-hidden p-[2px] border border-white/10 shadow-inner relative group-hover:border-cyan-500/30 transition-all">
+                    <div className="w-full h-2 md:h-3 bg-black/60 rounded-full overflow-hidden p-[2px] border border-white/10 shadow-inner relative group-hover:border-cyan-500/30 transition-all">
                         <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${storagePercent > 0 ? storagePercent : 8}%` }}
@@ -239,17 +239,17 @@ function LedgerRow({ pod, index }: any) {
             </td>
 
             <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className={`inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 rounded-full border transition-all ${isOnline ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-red-500/10 border-red-500/30 text-red-500'}`}>
-                    <div className={`w-1 h-1 md:w-1.5 md:h-1.5 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-widest">{pod.status || 'Offline'}</span>
+                <div className={`inline-flex items-center gap-2 md:gap-4 px-3 md:px-5 py-1.5 md:py-2 rounded-full border transition-all ${isOnline ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-red-500/10 border-red-500/30 text-red-500'}`}>
+                    <div className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
+                    <span className="text-[8px] md:text-[11px] font-black uppercase tracking-widest">{pod.status || 'Offline'}</span>
                 </div>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10 text-right">
-                <button className="p-3 md:p-4 rounded-[15px] md:rounded-[20px] sovereign-glass border border-white/10 text-white/20 hover:text-cyan-400 group-hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all shadow-xl">
+            {/* <td className="px-6 md:px-12 py-6 md:py-10 text-right">
+                <button className="p-3 md:p-5 rounded-[15px] md:rounded-[24px] sovereign-glass border border-white/10 text-white/20 hover:text-cyan-400 group-hover:border-cyan-500/50 transition-all shadow-xl">
                     <ArrowUpRight size={18} />
                 </button>
-            </td>
+            </td> */}
         </motion.tr>
     );
 }
@@ -270,9 +270,9 @@ function InsightMini({ label, value, color }: any) {
         fuchsia: "text-fuchsia-400 border-fuchsia-400/20 bg-fuchsia-400/5 shadow-[0_0_30px_rgba(255,0,189,0.1)]"
     };
     return (
-        <div className="sovereign-glass rounded-[30px] md:rounded-[40px] p-6 md:p-10 border-white/5 flex flex-col gap-2 group hover:border-white/20 transition-all">
-            <span className="text-[8px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.4em]">{label}</span>
-            <span className={`text-2xl md:text-4xl font-black italic tracking-tighter leading-none ${themes[color].split(' ')[0]}`}>{value}</span>
+        <div className="sovereign-glass rounded-[30px] md:rounded-[50px] p-6 md:p-12 border-white/5 flex flex-col gap-2 md:gap-3 group hover:border-white/20 transition-all">
+            <span className="text-[8px] md:text-[11px] font-black text-white/20 uppercase tracking-[0.5em]">{label}</span>
+            <span className={`text-2xl md:text-5xl font-black italic tracking-tighter leading-none ${themes[color].split(' ')[0]}`}>{value}</span>
         </div>
     );
 }
