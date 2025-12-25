@@ -1,16 +1,16 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutDashboard, Server, Terminal, Globe, Shield, Crown, Activity } from "lucide-react";
+import { LayoutDashboard, Server, Code, Globe, Crown, ShieldHalf } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV = [
-    { icon: LayoutDashboard, href: "/dashboard", label: "Intelligence_Overview" },
-    { icon: Server, href: "/dashboard/nodes", label: "Registry_Explorer" },
-    { icon: Crown, href: "/dashboard/leaderboard", label: "Hall_of_Champions" },
-    { icon: Terminal, href: "/dashboard/gossip", label: "Live_Gossip_Relay" },
-    { icon: Globe, href: "/dashboard/map", label: "Global_Radar_Map" },
+    { icon: LayoutDashboard, href: "/dashboard", label: "Overview" },
+    { icon: Server, href: "/dashboard/nodes", label: "pNodes" },
+    { icon: Crown, href: "/dashboard/leaderboard", label: "Leaderboard" },
+    { icon: Code, href: "/dashboard/gossip", label: "Gossip" },
+    { icon: Globe, href: "/dashboard/map", label: "Global Map" },
 ];
 
 export default function CyberSidebar() {
@@ -24,13 +24,13 @@ export default function CyberSidebar() {
             /* Mobile Layout */
             bottom-6 left-1/2 -translate-x-1/2 w-[94vw] h-20 flex-row rounded-[32px]
             /* Core Glass Styling */
-            z-[500] flex items-center justify-between p-2 md:py-10 sovereign-glass shadow-[0_40px_100px_rgba(0,0,0,0.9)] transition-all duration-700"
+            z-500 flex items-center justify-between p-2 md:py-10 sovereign-glass shadow-[0_40px_100px_rgba(0,0,0,0.9)] transition-all duration-700"
         >
             {/* --- 1. PRISM BORDER (Cyan via White to Fuchsia) --- */}
-            <div className="absolute inset-0 rounded-[inherit] p-[1.5px] bg-gradient-to-b from-cyan-400 via-white/80 to-fuchsia-600 opacity-40 z-0 pointer-events-none" />
+            <div className="absolute inset-0 rounded-[inherit] p-[1.5px] bg-linear-to-b from-cyan-400 via-white/80 to-fuchsia-600 opacity-40 z-0 pointer-events-none" />
 
             {/* --- 2. INTERNAL REFRACTION BACKGROUND --- */}
-            <div className="absolute inset-[1px] bg-[#010103]/95 rounded-[inherit] overflow-hidden z-0">
+            <div className="absolute inset-px bg-[#010103]/95 rounded-[inherit] overflow-hidden z-0">
                 <motion.div
                     animate={{
                         background: [
@@ -46,7 +46,7 @@ export default function CyberSidebar() {
                 <motion.div
                     animate={{ x: ["-200%", "200%"] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent skew-x-12"
                 />
             </div>
 
@@ -54,11 +54,12 @@ export default function CyberSidebar() {
             <div className="hidden md:flex relative z-10 flex-col items-center mb-4">
                 <div className="relative group">
                     <div className="absolute inset-0 bg-white blur-2xl opacity-10 group-hover:opacity-30 animate-pulse transition-opacity" />
-                    <div className="w-12 h-12 rounded-[20px] bg-black border border-white/20 flex items-center justify-center relative z-10 shadow-2xl">
-                        <Shield size={22} className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                    <div className="w-12 h-12 rounded-[20px] bg-linear-to-br from-cyan-400 via-cyan-200 to-fuchsia-600 border border-white/20 flex items-center shadow-[0_0_15px_rgba(0,242,255,0.5)] justify-center relative z-10 ">
+                        <ShieldHalf size={24} className="text-black/90 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+
                     </div>
                 </div>
-                <div className="h-px w-6 bg-gradient-to-r from-cyan-400 via-white to-fuchsia-600 mt-10 opacity-40" />
+                <div className="h-px w-6 bg-linear-to-r from-cyan-400 via-white to-fuchsia-600 mt-10 opacity-40" />
             </div>
 
             {/* --- 4. NAVIGATION SECTOR --- */}
@@ -87,7 +88,7 @@ export default function CyberSidebar() {
                                 {active && (
                                     <motion.div
                                         layoutId="active-bg-glow"
-                                        className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-white/10 to-fuchsia-600/20 blur-md rounded-2xl"
+                                        className="absolute inset-0 bg-linear-to-br from-cyan-400/20 via-white/10 to-fuchsia-600/20 blur-md rounded-2xl"
                                     />
                                 )}
                             </motion.div>
@@ -98,9 +99,9 @@ export default function CyberSidebar() {
                                     layoutId="sidebar-trace"
                                     className="absolute 
                                         md:-left-10 md:top-0 md:bottom-0 md:w-1.5 
-                                        -bottom-6 left-0 right-0 h-1.5 
-                                        bg-gradient-to-b from-cyan-400 via-white to-fuchsia-600 
-                                        md:bg-gradient-to-b shadow-[0_0_15px_rgba(0,242,255,0.5)] rounded-full"
+                                        -bottom-6 left-0 right-0 h-3 md:hidden block
+                                        bg-linear-to-b from-cyan-400 via-white to-fuchsia-600 
+                                        md:bg-linear-to-b shadow-[0_0_15px_rgba(0,242,255,0.5)] rounded-full"
                                 />
                             )}
 
@@ -111,11 +112,11 @@ export default function CyberSidebar() {
                                         initial={{ opacity: 0, scale: 0.8, x: 10 }}
                                         animate={{ opacity: 1, scale: 1, x: 45 }}
                                         exit={{ opacity: 0, scale: 0.8, x: 10 }}
-                                        className="absolute hidden md:flex items-center left-full top-1/2 -translate-y-1/2 z-[600] pointer-events-none"
+                                        className="absolute hidden md:flex items-center left-1/2 top-1/2 -translate-y-1/2 z-600 pointer-events-none"
                                     >
-                                        <div className="w-4 h-[1.5px] bg-white/40" />
+
                                         <div className="bg-black/95 backdrop-blur-3xl border border-white/10 px-4 py-2 rounded-xl shadow-2xl border-l-[3px] border-l-cyan-400">
-                                            <span className="text-[10px] font-[900] italic text-white uppercase tracking-[0.4em] whitespace-nowrap">
+                                            <span className="text-[10px] font-black italic text-white uppercase tracking-[0.4em] whitespace-nowrap">
                                                 {item.label}
                                             </span>
                                         </div>
@@ -129,10 +130,7 @@ export default function CyberSidebar() {
 
             {/* --- 5. TACTICAL SENSOR (Bottom) --- */}
             <div className="hidden md:flex relative z-10 flex-col items-center gap-4">
-                <div className="h-px w-6 bg-gradient-to-r from-cyan-400 via-white to-fuchsia-600 opacity-40" />
-                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center relative group-hover:border-white/30 transition-all">
-                    <Activity size={16} className="text-cyan-400 animate-pulse" />
-                </div>
+
             </div>
 
         </aside>
