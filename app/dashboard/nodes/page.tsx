@@ -48,7 +48,7 @@ export default function NodeRegistry() {
     const totalPages = Math.ceil(filteredNodes.length / nodesPerPage);
 
     return (
-        <div className="flex flex-col gap-8 md:gap-12 pb-40 max-w-7xl mx-auto overflow-visible">
+        <div className="flex flex-col gap-8 md:gap-12 pb-20 max-w-7xl mx-auto overflow-visible">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
             <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-6 md:pt-10 border-b border-white/5 pb-10">
@@ -58,8 +58,8 @@ export default function NodeRegistry() {
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
                     <div className="relative group w-full sm:w-80 lg:w-96">
-                        <div className="absolute inset-0 bg-cyan-500/5 blur-2xl group-focus-within:bg-cyan-500/15 transition-all duration-700" />
-                        <div className="relative flex items-center bg-black/60 border border-white/10 rounded-[20px] md:rounded-[25px] p-1.5 focus-within:border-cyan-500/50 transition-all">
+                        <div className="absolute inset-0 bg-cyan-500/5 blur-2xl group-focus-within:bg-cyan-500/15 transition-all duration-700 " />
+                        <div className="relative p-[2.5px] flex items-center bg-transparent border border-white/10 rounded-[20px] md:rounded-[25px]  focus-within:border-cyan-500/50 transition-all">
                             <div className="pl-4 md:pl-5 pr-2 text-cyan-400/40"><Search size={22} /></div>
                             <input
                                 type="text" value={search} onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
@@ -71,7 +71,7 @@ export default function NodeRegistry() {
 
                     <button
                         onClick={() => setIsFilterOpen(true)}
-                        className="h-14 md:h-16 px-6 md:px-8 rounded-[20px] md:rounded-[25px] sovereign-glass border border-white/10 flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden"
+                        className="h-14 md:h-16 px-6 md:px-8 rounded-[20px] md:rounded-[25px] sovereign-glass border border-white/10 flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden w-full md:w-auto"
                     >
                         <Filter size={18} className="text-cyan-400" />
                         <span>Advanced_Filters</span>

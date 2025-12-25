@@ -20,7 +20,7 @@ export default function CyberSidebar() {
     return (
         <aside className="fixed 
             /* Desktop: Dynamic Height to fit all 5 icons */
-            md:left-20 md:top-1/2 md:-translate-y-1/2 md:h-[82vh] md:w-20 md:flex-col md:rounded-[40px]
+            md:left-[4.5%] md:top-1/2 md:-translate-y-1/2 md:h-[82vh] md:w-20 md:flex-col md:rounded-[40px]
             /* Mobile Layout */
             bottom-6 left-1/2 -translate-x-1/2 w-[94vw] h-20 flex-row rounded-[32px]
             /* Core Glass Styling */

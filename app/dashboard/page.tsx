@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useMemo } from 'react';
 import {
-    Zap, Activity, HardDrive, Server, ShieldCheck,
-    Database, Fingerprint, ArrowUpRight, ArrowDownRight,
-    Globe, Binary, Radio, Gauge, Box,
+    Zap, Activity,  Server, ShieldCheck,
+    Database,  Binary, Radio,  Box,
     Clock
 } from "lucide-react";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-    ResponsiveContainer, AreaChart, Area, Cell, LineChart, Line
+    ResponsiveContainer, Cell
 } from 'recharts';
 import { useXandStore } from '../store/useXandStore';
 import Headline from '../components/Headline';
@@ -56,7 +54,7 @@ export default function DiamondDashboard() {
     }
 
     return (
-        <div className="flex flex-col gap-12  pb-40 max-w-7xl mx-auto overflow-hidden">
+        <div className="flex flex-col gap-12  pb-20 max-w-7xl mx-auto overflow-hidden">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
             <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-10 border-b border-white/5 pb-10">
@@ -64,7 +62,7 @@ export default function DiamondDashboard() {
             
 
                 <div className="flex gap-12 px-10 py-6 sovereign-glass rounded-[40px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-r from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <HeaderMetric label="Global Uptime" value="99.98%" icon={Activity} color="emerald" />
                     <HeaderMetric label="Epoch Progress" value="Epoch 14" icon={Clock} color="cyan" />
                     <HeaderMetric label="Network Sync" value="Stable" icon={Zap} color="fuchsia" />
@@ -101,7 +99,7 @@ export default function DiamondDashboard() {
 
                 {/* PRIMARY CHART: CAPACITY RANKING */}
                 <div className="lg:col-span-8 group relative">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-white/10 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                    <div className="absolute -inset-1 bg-linear-to-r from-cyan-500/20 via-white/10 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                     <div className="sovereign-glass rounded-[60px] p-12 h-[600px] flex flex-col border border-white/10 relative overflow-hidden shadow-2xl">
                         {/* Interactive HUD Layer */}
                         <div className="flex justify-between items-start mb-16 relative z-10">
@@ -134,7 +132,7 @@ export default function DiamondDashboard() {
 
                 {/* SECONDARY HUD: CONSENSUS MONITOR */}
                 <div className="lg:col-span-4 flex flex-col gap-10">
-                    <div className="sovereign-glass rounded-[60px] p-10 flex flex-col flex-1 border border-white/10 relative overflow-hidden bg-gradient-to-br from-white/[0.03] to-transparent">
+                    <div className="sovereign-glass rounded-[60px] p-10 flex flex-col flex-1 border border-white/10 relative overflow-hidden bg-linear-to-br from-white/3 to-transparent">
                         <div className="absolute top-0 right-0 p-8 opacity-5"><Binary size={150} /></div>
                         <h3 className="text-fuchsia-500 text-[10px] font-black tracking-[0.5em] uppercase mb-12">Consensus_Live</h3>
 
@@ -186,7 +184,7 @@ function DiamondCard({ label, value, delta, icon: Icon, color }: any) {
                 </h2>
             </div>
             {/* Reflective Shine */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/2 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
         </div>
     );
 }
