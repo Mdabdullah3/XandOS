@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { motion } from "framer-motion";
 import {
     Trophy, Crown, Medal, ArrowUpRight,

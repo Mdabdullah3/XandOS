@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Headline = ({ title, title2 = "", subtitle }: { title: string, title2?: string, subtitle: string }) => {
+const Headline = ({ title, title2 = "", subtitle="" }: { title: string, title2?: string, subtitle: string }) => {
     return (
         <div className="flex flex-col gap-2">
             <div className="flex items-start gap-5">

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useXandStore } from '@/app/store/useXandStore';
 import Headline from '@/app/components/Headline';
+import Link from 'next/link';
 
 const formatBytes = (bytes: number) => {
     if (!bytes || bytes === 0) return "0 B";
@@ -80,34 +81,35 @@ export default function NodeRegistry() {
 
             {/* --- 2. THE REFRACTIVE LEDGER TABLE --- */}
             <div className="sovereign-glass rounded-[30px] md:rounded-[60px] border-white/10 overflow-hidden relative shadow-[0_30px_100px_rgba(0,0,0,0.8)]">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
 
-                <div className="overflow-x-auto no-scrollbar">
-                    <table className="w-full text-left border-collapse min-w-200 lg:min-w-full">
-                        <thead className="bg-white/3 text-[9px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.4em] border-b border-white/10">
-                            <tr>
-                                <th className="px-6 md:px-10 py-6 md:py-10">Neural_Identity</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10">Address</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10">Location</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10 text-center">Integrity</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10">Memory_Allocation</th>
-                                <th className="px-6 md:px-10 py-6 md:py-10">Status</th>
-                                {/* <th className="px-6 md:px-10 py-6 md:py-10 text-right">Actions</th> */}
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-white/5">
-                            {isLoading ? (
-                                <tr><td colSpan={7} className="py-32 md:py-40 text-center"><Loader2 className="animate-spin text-cyan-400 mx-auto" size={40} /></td></tr>
-                            ) : currentNodes.length === 0 ? (
-                                <tr><td colSpan={7} className="py-40 text-center text-white/10 uppercase tracking-[1em] italic text-xs">No_Segments_Found</td></tr>
-                            ) : (
-                                /* ✅ FIXED: Added explicit types to map parameters */
-                                currentNodes.map((pod: any, i: number) => (
-                                    <LedgerRow key={pod.pubkey} pod={pod} index={(currentPage - 1) * nodesPerPage + i} />
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                <div className="sovereign-glass rounded-[40px] border-white/10 relative shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden">
+
+                    {/* Horizontal Scroll only on small tablets, hidden on Desktop */}
+                    <div className="overflow-x-auto no-scrollbar">
+                        <table className="w-full text-left border-collapse min-w-[1000px] xl:min-w-full table-fixed">
+                            <thead className="bg-white/3 text-[9px] font-black text-white/20 uppercase tracking-[0.3em] border-b border-white/10">
+                                <tr>
+                                    <th className="px-6 py-8 w-[22%]">Identity</th>
+                                    <th className="px-6 py-8 w-[15%]">Address</th>
+                                    <th className="px-6 py-8 w-[15%]">Location</th>
+                                    <th className="px-6 py-8 w-[12%] text-center">Integrity</th>
+                                    <th className="px-6 py-8 w-[20%]">Allocation</th>
+                                    <th className="px-6 py-8 w-[11%]">Status</th>
+                                    <th className="px-6 py-8 w-[5%] text-right pr-10"></th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5 bg-black/10">
+                                {isLoading ? (
+                                    <tr><td colSpan={7} className="py-32 text-center"><Loader2 className="animate-spin text-cyan-400 mx-auto" size={40} /></td></tr>
+                                ) : (
+                                    currentNodes.map((pod: any, i: number) => (
+                                        <LedgerRow key={pod.pubkey} pod={pod} index={(currentPage - 1) * nodesPerPage + i} />
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 {/* TABLE FOOTER */}
@@ -126,7 +128,7 @@ export default function NodeRegistry() {
             {/* --- 3. FILTER MODAL --- */}
             <AnimatePresence>
                 {isFilterOpen && (
-                    <div className="fixed inset-0 z-[600] flex items-center justify-center p-4">
+                    <div className="fixed inset-0 z-600 flex items-center justify-center p-4">
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={() => setIsFilterOpen(false)} />
                         <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }} className="relative w-full max-w-xl sovereign-glass rounded-[40px] p-6 md:p-12 border border-cyan-500/20 shadow-[0_0_100px_rgba(0,242,255,0.2)]">
                             <div className="flex justify-between items-center mb-8 md:mb-12">
@@ -159,7 +161,7 @@ export default function NodeRegistry() {
 
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                     <button onClick={() => { setActiveStatus("ALL"); setActiveRegion("All Regions"); }} className="w-full sm:flex-1 h-14 md:h-16 rounded-[15px] md:rounded-[25px] border border-white/5 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/20 hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-2"><RotateCcw size={16} /> Reset</button>
-                                    <button onClick={() => setIsFilterOpen(false)} className="w-full sm:flex-2 h-14 md:h-16 rounded-[15px] md:rounded-[25px] bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] shadow-[0_20px_40px_rgba(0,242,255,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all">Commit_Filters</button>
+                                    <button onClick={() => setIsFilterOpen(false)} className="w-full sm:flex-2 h-14 md:h-16 rounded-[15px] md:rounded-[25px] bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black uppercase tracking-widest text-[10px] md:text-[11px] shadow-[0_20px_40px_rgba(0,242,255,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all">Commit_Filters</button>
                                 </div>
                             </div>
                         </motion.div>
@@ -184,72 +186,67 @@ function LedgerRow({ pod, index }: any) {
     const storagePercent = (pod.storageUsed / pod.storageCapacity * 100) || 0;
 
     return (
-        <motion.tr
-            initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: (index % 8) * 0.04 }}
-            className="group hover:bg-cyan-500/4 transition-all duration-500 cursor-pointer relative"
-        >
-            <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className="flex items-center gap-4 md:gap-8">
-                    <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl md:rounded-[22px] bg-linear-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center relative z-10 group-hover:border-cyan-500 transition-all overflow-hidden shadow-2xl">
-                        <ShieldCheck size={20} className={isOnline ? "text-cyan-400 drop-shadow-[0_0_8px_#00f2ff]" : "text-white/10"} />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+        <motion.tr initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: (index % 8) * 0.03 }} className="group hover:bg-cyan-500/4 transition-all cursor-pointer relative">
+
+            {/* Identity - Reduced spacing/sizes */}
+            <td className="px-6 py-6">
+                <Link href={`/dashboard/nodes/${pod?.pubkey}`} className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-[14px] bg-linear-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center shrink-0 relative overflow-hidden group-hover:border-cyan-500/50">
+                        <ShieldCheck size={18} className={isOnline ? "text-cyan-400" : "text-white/10"} />
+                        <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs md:text-[17px] font-black text-white italic group-hover:text-cyan-400 transition-colors uppercase tracking-tighter leading-none mb-1">Node {pod.pubkey?.slice(0, 4)}</span>
-                        <span className="text-[8px] md:text-[10px] font-mono text-white/20 uppercase tracking-widest">{pod.pubkey?.slice(0, 8)}...</span>
+                    <div className="flex flex-col min-w-0">
+                        <span className="text-[13px] font-black text-white italic uppercase tracking-tight truncate">Node {pod.pubkey?.slice(0, 4)}</span>
+                        <span className="text-[8px] font-mono text-white/20 uppercase tracking-widest truncate">{pod.pubkey?.slice(0, 8)}...</span>
                     </div>
-                </div>
+                </Link>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10 text-[9px] md:text-[12px] font-mono text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-tighter">
+            <td className="px-6 py-6 text-[10px] font-mono text-white/30 truncate uppercase tracking-tighter">
                 {pod.address || "Encrypted"}
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10">
+            <td className="px-6 py-6">
                 <div className="flex items-center gap-2">
-                    <MapPin size={14} className="text-pink-500" />
-                    <span className="text-[9px] md:text-[12px] font-black italic text-white/60 uppercase tracking-widest">{pod.region || "G_NODE"}</span>
+                    <MapPin size={12} className="text-pink-500 shrink-0" />
+                    <span className="text-[10px] font-black italic text-white/60 uppercase tracking-widest truncate">{pod.region || "G_NODE"}</span>
                 </div>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10 text-center">
+            <td className="px-6 py-6 text-center">
                 <div className="flex flex-col items-center gap-2">
-                    <div className="w-16 md:w-28 h-1.5 bg-white/5 rounded-full overflow-hidden relative shadow-inner">
-                        <motion.div initial={{ width: 0 }} animate={{ width: isOnline ? "100%" : "20%" }} className={`h-full ${isOnline ? 'bg-cyan-500' : 'bg-red-500'}`} />
+                    <div className="w-20 h-1 bg-white/5 rounded-full overflow-hidden relative">
+                        <motion.div initial={{ width: 0 }} animate={{ width: isOnline ? "100%" : "20%" }} className={`h-full ${isOnline ? 'bg-cyan-500 shadow-[0_0_10px_#00f2ff]' : 'bg-rose-600'}`} />
                     </div>
-                    <span className="text-[8px] font-black text-white/20 uppercase tracking-[0.2em]">{isOnline ? 'Auth' : 'Off'}</span>
+                    <span className="text-[8px] font-black text-white/20 uppercase">Auth</span>
                 </div>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className="flex flex-col gap-2 md:gap-3 w-40 md:w-64">
-                    <div className="flex justify-between items-center text-[8px] md:text-[11px] font-black italic uppercase tracking-widest">
+            {/* Compact Allocation Bar */}
+            <td className="px-6 py-6">
+                <div className="flex flex-col gap-2 w-full max-w-40">
+                    <div className="flex justify-between items-center text-[9px] font-black italic uppercase">
                         <span className="text-white/60">{formatBytes(pod.storageUsed)}</span>
                         <span className="text-cyan-400">{formatBytes(pod.storageCapacity)}</span>
                     </div>
-                    <div className="w-full h-2 md:h-3 bg-black/60 rounded-full overflow-hidden p-[2px] border border-white/10 shadow-inner relative group-hover:border-cyan-500/30 transition-all">
-                        <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${storagePercent > 0 ? storagePercent : 8}%` }}
-                            className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500 rounded-full shadow-[0_0_20px_rgba(0,242,255,0.4)]"
-                        />
+                    <div className="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5 shadow-inner">
+                        <motion.div initial={{ width: 0 }} animate={{ width: `${storagePercent > 0 ? storagePercent : 8}%` }} className="h-full bg-linear-to-r from-cyan-400 to-blue-500 rounded-full shadow-[0_0_10px_rgba(0,242,255,0.4)]" />
                     </div>
                 </div>
             </td>
 
-            <td className="px-6 md:px-12 py-6 md:py-10">
-                <div className={`inline-flex items-center gap-2 md:gap-4 px-3 md:px-5 py-1.5 md:py-2 rounded-full border transition-all ${isOnline ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-red-500/10 border-red-500/30 text-red-500'}`}>
-                    <div className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
-                    <span className="text-[8px] md:text-[11px] font-black uppercase tracking-widest">{pod.status || 'Offline'}</span>
+            <td className="px-6 py-6">
+                <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${isOnline ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-rose-500/10 border-rose-500/30 text-red-500'}`}>
+                    <div className={`w-1 h-1 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
+                    <span className="text-[9px] font-black uppercase tracking-widest">{pod.status}</span>
                 </div>
             </td>
 
-            {/* <td className="px-6 md:px-12 py-6 md:py-10 text-right">
-                <button className="p-3 md:p-5 rounded-[15px] md:rounded-[24px] sovereign-glass border border-white/10 text-white/20 hover:text-cyan-400 group-hover:border-cyan-500/50 transition-all shadow-xl">
+            <td className="text-right pr-5">
+                <Link href={`/dashboard/nodes/${pod.pubkey}`} className=" hover:text-white  text-cyan-400 transition-all">
                     <ArrowUpRight size={18} />
-                </button>
-            </td> */}
+                </Link>
+            </td>
         </motion.tr>
     );
 }
