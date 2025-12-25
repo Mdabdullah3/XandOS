@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useXandStore } from '@/app/store/useXandStore';
 import Headline from '@/app/components/Headline';
+import Link from 'next/link';
 
 const formatBytes = (bytes: number) => {
     if (!bytes) return "0 B";
@@ -48,10 +49,10 @@ export default function LeaderboardPage() {
     }
 
     return (
-        <div className="flex flex-col gap-10 md:gap-16 pb-40 max-w-7xl mx-auto overflow-visible">
+        <div className="flex flex-col gap-10 md:gap-12 max-w-7xl mx-auto overflow-visible">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-8 md:pt-12 border-b border-white/5 pb-10 md:pb-12 relative">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-4 md:pt-6 border-b border-white/5 pb-10 md:pb-12 relative">
                 <div className="scale-90 md:scale-100 origin-left">
                     <Headline title="HALL OF" title2="CHAMPIONS" subtitle="ELITE PERFORMANCE LEADERBOARD // SEASON 01" />
                 </div>
@@ -70,7 +71,7 @@ export default function LeaderboardPage() {
             </header>
 
             {/* --- 2. THE DYNAMIC PODIUM HUB (Responsive Stack) --- */}
-            <div className="flex flex-col md:flex-row md:items-end justify-center gap-8 md:gap-10 pt-10 md:pt-12 relative">
+            <div className="flex flex-col md:flex-row md:items-end justify-center gap-8 md:gap-10 pt-5 md:pt-6 relative">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(250,204,21,0.03),transparent_70%)] pointer-events-none" />
 
                 {/* Silver - Rank 2 (Order change on desktop) */}
@@ -180,10 +181,10 @@ function HallRow({ node, rank }: any) {
                 <span className="font-mono text-cyan-400 font-black text-xs md:text-sm">#0{rank}</span>
             </td>
             <td className="px-8 md:px-12 py-6 md:py-10">
-                <div className="flex flex-col gap-1">
+                <Link href={`/dashboard/node/${node.pubkey}`} className="flex flex-col gap-1">
                     <span className="text-xs md:text-[15px] font-black text-white group-hover:text-cyan-400 transition-colors uppercase italic tracking-tight leading-none">pNode_{node.pubkey?.slice(0, 8)}</span>
                     <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest truncate max-w-[120px] md:max-w-none">{node.pubkey}</span>
-                </div>
+                </Link>
             </td>
             <td className="px-8 md:px-12 py-6 md:py-10 text-center">
                 <div className="inline-flex items-center gap-3">
@@ -198,9 +199,9 @@ function HallRow({ node, rank }: any) {
                 </div>
             </td>
             <td className="px-8 md:px-12 py-6 md:py-10 text-right">
-                <button className="p-3 md:p-4 rounded-xl md:rounded-2xl sovereign-glass border border-white/10 text-white/10 group-hover:text-cyan-400 group-hover:border-cyan-500/40 transition-all">
+                <Link href={`/dashboard/node/${node.pubkey}`} className="p-3 md:p-4 rounded-xl md:rounded-2xl sovereign-glass border border-white/10 text-white/10 group-hover:text-cyan-400 group-hover:border-cyan-500/40 transition-all">
                     <ArrowUpRight size={20} />
-                </button>
+                </Link>
             </td>
         </motion.tr>
     );

@@ -51,7 +51,7 @@ export default function NodeRegistry() {
         <div className="flex flex-col gap-8 md:gap-12 pb-20 max-w-7xl mx-auto overflow-visible">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-6 md:pt-10 border-b border-white/5 pb-10">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-4 md:pt-6 border-b border-white/5 pb-10">
                 <div className="scale-90 sm:scale-100 origin-left">
                     <Headline title="Network" title2="Registry" subtitle="Verified Node Ecosystem Ledger" />
                 </div>

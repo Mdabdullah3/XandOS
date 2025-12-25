@@ -70,10 +70,10 @@ export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: s
 
     if (!node) return <div className="h-screen flex items-center justify-center text-white font-black uppercase">Identity_Unresolved</div>;
     return (
-        <div className="flex flex-col gap-12 pb-40  max-w-7xl mx-auto overflow-visible font-sans">
+        <div className="flex flex-col gap-12 pb-20 max-w-7xl mx-auto overflow-visible font-sans">
 
             {/* --- HEADER --- */}
-            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-10 border-b border-white/5 pb-10">
+            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-4 md:pt-6 border-b border-white/5 pb-10">
                 <div className="flex items-start gap-8">
 
                     <Headline title={`Node ${node.pubkey.slice(0, 4)}`} title2="Audit" subtitle=' ' />

@@ -60,10 +60,10 @@ export default function GossipStream() {
     }, [pnodes]);
 
     return (
-        <div className="flex flex-col gap-12 pb-40 max-w-7xl mx-auto overflow-visible">
+        <div className="flex flex-col gap-12 pb-20 max-w-7xl mx-auto overflow-visible">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
-            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-12 border-b border-white/5 pb-12 relative">
+            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-4 md:pt-6 border-b border-white/5 pb-12 relative">
                 <Headline title="GOSSIP" title2="PROTOCOL" subtitle="REAL-TIME ENCRYPTED NETWORK PULSE" />
 
                 <div className="flex gap-10 px-10 py-6 sovereign-glass rounded-[40px] border border-white/10 relative overflow-hidden group">

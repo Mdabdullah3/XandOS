@@ -57,7 +57,7 @@ export default function DiamondDashboard() {
         <div className="flex flex-col gap-12  pb-20 max-w-7xl mx-auto overflow-hidden">
 
             {/* --- 1. SOVEREIGN HEADER --- */}
-            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-10 border-b border-white/5 pb-10">
+            <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pt-4 md:pt-6 border-b border-white/5 pb-10">
                 <Headline title="Network" title2="Sovereignty" subtitle="Next-Gen Storage Protocol Intelligence" />
             
 

@@ -17,7 +17,8 @@ body {
   background: #020205;
   color: #fff;
   /* font-family: "Orbitron", sans-serif; */
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .text-diamond {
   text-shadow: 0 0 20px rgba(0, 242, 255, 0.3),
