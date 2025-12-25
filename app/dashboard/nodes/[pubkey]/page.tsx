@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState, use } from 'react';
@@ -9,48 +10,49 @@ import {
 } from "lucide-react";
 import Headline from '@/app/components/Headline';
 import { useXandStore } from '@/app/store/useXandStore';
+import { useRouter } from 'next/navigation';
+interface PageProps {
+    params: Promise<{ pubkey: string }>;
+}
+export default function NodeDetailPage({ params }: PageProps) {
+    const router = useRouter();
 
-export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: string }> }) {
-    const { pubkey } = use(params);
+    // ✅ Unwrap the promise params
+    const resolvedParams = use(params);
+    const pubkey = resolvedParams.pubkey;
+
     const { pnodes, fetchPNodes, isLoading: storeLoading } = useXandStore();
 
     const [node, setNode] = useState<any>(null);
     const [isScanning, setIsScanning] = useState(false);
     const [copied, setCopied] = useState(false);
 
-    // --- 1. FUNCTIONAL LOGIC: FETCH ---
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const getAuditData = async () => {
+    useEffect(() => {
         const found = pnodes.find((n: any) => n.pubkey === pubkey);
         if (found) {
             setNode(found);
         } else {
-            // Fallback: If direct link, fetch all and try again
-            await fetchPNodes();
+            fetchPNodes();
         }
-    };
+    }, [pnodes, pubkey, fetchPNodes]);
 
-    useEffect(() => { getAuditData(); }, [getAuditData, pnodes, pubkey]);
-
-    // --- 2. FUNCTIONAL LOGIC: DOWNLOAD LOGS ---
     const handleDownload = () => {
+        if (!node) return;
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(node, null, 2));
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", `audit_log_${node.pubkey.slice(0, 8)}.json`);
+        downloadAnchorNode.setAttribute("download", `audit_${node.pubkey.slice(0, 8)}.json`);
         document.body.appendChild(downloadAnchorNode);
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
     };
 
-    // --- 3. FUNCTIONAL LOGIC: SHARE ---
     const handleShare = () => {
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
 
-    // --- 4. FUNCTIONAL LOGIC: SCAN ---
     const handleScan = () => {
         setIsScanning(true);
         setTimeout(() => {
@@ -68,7 +70,7 @@ export default function NodeDetailPage({ params }: { params: Promise<{ pubkey: s
         );
     }
 
-    if (!node) return <div className="h-screen flex items-center justify-center text-white font-black uppercase">Identity_Unresolved</div>;
+    if (!node) return <div className="h-screen flex items-center justify-center text-white font-black italic">Identity_Unresolved</div>;
     return (
         <div className="flex flex-col gap-12 pb-20 max-w-7xl mx-auto overflow-visible font-sans">
 
