@@ -99,7 +99,7 @@ export default function CyberSidebar() {
                                     layoutId="sidebar-trace"
                                     className="absolute 
                                         md:-left-10 md:top-0 md:bottom-0 md:w-1.5 
-                                        -bottom-6 left-0 right-0 h-3 md:hidden block
+                                        -bottom-6 left-0 right-0 h-1.5 md:hidden block
                                         bg-linear-to-b from-cyan-400 via-white to-fuchsia-600 
                                         md:bg-linear-to-b shadow-[0_0_15px_rgba(0,242,255,0.5)] rounded-full"
                                 />
