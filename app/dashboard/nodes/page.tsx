@@ -108,10 +108,10 @@ export default function NodeRegistry() {
             {/* --- 1. DIAMOND HEADER --- */}
             <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-10 border-b border-white/5 pb-12">
                 <Headline title="NETWORK" title2="REGISTRY" subtitle="VERIFIED NODE ECOSYSTEM LEDGER" />
-                <div className="flex items-center gap-5 w-full xl:w-auto">
+                <div className="md:flex items-center gap-x-5 w-full xl:w-auto">
                     <div className="relative group flex-1 xl:w-96">
                         <div className="absolute inset-0 bg-cyan-500/5 blur-3xl group-focus-within:bg-cyan-500/15 transition-all" />
-                        <div className="relative flex items-center bg-black/60 border border-white/10 rounded-[28px] p-1.5 focus-within:border-cyan-500/50 transition-all shadow-2xl">
+                        <div className="relative flex items-center bg-transparent border border-white/10 rounded-[28px] p-[3px] focus-within:border-cyan-500/50 transition-all shadow-2xl">
                             <div className="pl-5 pr-2 text-cyan-400/40"><Search size={22} /></div>
                             <input
                                 type="text" value={search} onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
@@ -122,7 +122,7 @@ export default function NodeRegistry() {
                     </div>
                     <button
                         onClick={() => setIsFilterOpen(true)}
-                        className="h-16 px-10 rounded-[28px] sovereign-glass border border-white/10 flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden relative shadow-2xl"
+                        className="h-16 mt-5 md:mt-0 px-10 rounded-[28px] sovereign-glass border border-white/10 flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden relative shadow-2xl w-full md:w-auto"
                     >
                         <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                         <Filter size={18} className="text-cyan-400 group-hover:rotate-180 transition-transform duration-700" />
