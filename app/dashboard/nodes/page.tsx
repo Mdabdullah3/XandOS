@@ -74,7 +74,7 @@ export default function NodeRegistry() {
                         className="h-14 md:h-16 px-6 md:px-8 rounded-[20px] md:rounded-[25px] sovereign-glass border border-white/10 flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] hover:border-cyan-500/50 transition-all group overflow-hidden w-full md:w-auto"
                     >
                         <Filter size={18} className="text-cyan-400" />
-                        <span>Filter_Sector</span>
+                        <span>Filter_Nodes</span>
                     </button>
                 </div>
             </header>
