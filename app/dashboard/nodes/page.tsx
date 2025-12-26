@@ -103,7 +103,7 @@ export default function NodeRegistry() {
     const totalPages = Math.ceil(filteredNodes.length / nodesPerPage);
 
     return (
-        <div className="flex flex-col gap-12 pb-20 max-w-7xl  mx-auto overflow-visible">
+        <div className="flex flex-col gap-12 max-w-7xl  mx-auto overflow-visible">
 
             {/* --- 1. DIAMOND HEADER --- */}
             <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 pt-10 border-b border-white/5 pb-12">
